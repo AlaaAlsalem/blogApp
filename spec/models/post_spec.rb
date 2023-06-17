@@ -11,7 +11,6 @@ RSpec.describe Post, type: :model do
     let(:post) { create(:post) }
     let(:author) { post.author }
 
-
     it 'should call update_posts_counter' do
       expect(post).to receive(:update_posts_counter)
       post.save
