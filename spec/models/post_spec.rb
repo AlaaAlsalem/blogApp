@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-
   # Test associations
   it { should belong_to(:author).class_name('User') }
   it { should have_many(:comments) }
@@ -11,7 +10,7 @@ RSpec.describe Post, type: :model do
   describe 'after_save' do
     let(:post) { create(:post) }
     let(:author) { post.author }
-    
+
 
     it 'should call update_posts_counter' do
       expect(post).to receive(:update_posts_counter)
@@ -43,8 +42,8 @@ RSpec.describe Post, type: :model do
   end
   describe 'recent_posts' do
     before(:example) do
-      #@user = User.create(name: 'John Doe', photo: 'Person Image', bio: 'I am a teacher', posts_counter: 0)
-      @user = User.create(name: 'Tom', photo: 'https://picsum.photos/200/500', bio: 'Teacher from Mexico.')      
+      # @user = User.create(name: 'John Doe', photo: 'Person Image', bio: 'I am a teacher', posts_counter: 0)
+      @user = User.create(name: 'Tom', photo: 'https://picsum.photos/200/500', bio: 'Teacher from Mexico.')
       @post = Post.create(author: user, title: 'Hello', text: 'This is my first post')
     end
 
