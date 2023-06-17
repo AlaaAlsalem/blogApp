@@ -8,8 +8,8 @@ gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 # for linter
 gem 'rubocop', '>= 1.0', '< 2.0'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'rspec-rails'
 gem 'sprockets-rails'
-
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 
@@ -66,8 +66,15 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+end
+group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+group :development, :test do
+  gem 'factory_bot_rails'
 end
