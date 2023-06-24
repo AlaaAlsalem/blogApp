@@ -1,19 +1,31 @@
-<h2>details of posts<h1>
-<section class="mt-4">
-  <div class="border border-dark p-2 mb-2">
-    <div class="d-flex justify-content-between">
-      <h3>post #<%= @post.id %> by <%= @post.user.name %></h3>
-      <div class="">
-        <span>Comments: <%= @post.comments_counter || 0 %> </span>
-        <span>, Likes: <%= @post.likes_counter || 0 %></span>
-      </div>
+<h1>Here is details of Users</h1>
+<section>
+  <div class="d-flex justify-content-between">
+    <div>
+      <img src="<%= @user.photo %>" alt='User Avatar' style="width:20%" />
     </div>
-    <p><%= @post.text%></p>
+    <div class='flex-grow-1 d-flex justify-content-between align-items-center'>
+      <a href="/users/<%= @user.id %>/posts">
+        <h1><%= @user.name %></h1>
+      </a>
+      <p>Number of posts: <%= @user.posts_counter || 0 %></p>
+    </div>
   </div>
-  <ul class="comments">
-    Comments:
-    <% @comments.each do |comment|%>
-      <li><%= comment.user.name %> : <%= comment.text %></li>
+  <div class='border border-dark p-4'>
+    <h3>Bio</h3>
+    <%= @user.bio %>
+  </div>
+  <div class='posts mt-5'>
+    <% @user.recent_posts.each_with_index do |post,index| %>
+      <div class="border border-dark p-2 mb-2">
+        <h3>post #<%= index+1 %></h3>
+        <p><%= post.text%></p>
+        <div class="d-flex justify-content-end">
+          <span class="">Comments: <%= post.comments_counter || 0 %> </span>
+          <span class="float-right">, Likes: <%= post.likes_counter || 0 %></span>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
+  <a href="<%= @user.id%>/posts" class="d-flex justify-content-center"> See all posts</a>
 </section>
