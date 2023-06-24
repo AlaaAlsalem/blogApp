@@ -1,19 +1,23 @@
 <h2>details of posts<h1>
-<section class="mt-4">
-  <div class="border border-dark p-2 mb-2">
-    <div class="d-flex justify-content-between">
-      <h3>post #<%= @post.id %> by <%= @post.user.name %></h3>
-      <div class="">
-        <span>Comments: <%= @post.comments_counter || 0 %> </span>
-        <span>, Likes: <%= @post.likes_counter || 0 %></span>
-      </div>
+<main>
+    <div class="post-container">
+        <h2>
+            <%= @post.title%> by <%= @post.author.name%>
+        </h2>
+        <p class="comment-like-count">
+            Comments: <%= @post.comments_counter%>, Likes:<%= @post.likes_counter%>
+        </p>
+        <div>
+            <%= @post.text%>
+        </div>
     </div>
-    <p><%= @post.text%></p>
-  </div>
-  <ul class="comments">
-    Comments:
-    <% @comments.each do |comment|%>
-      <li><%= comment.user.name %> : <%= comment.text %></li>
-    <% end %>
-  </ul>
-</section>
+    <div class="comments post-comments">
+        <h5>Comments</h5>
+        <% @comments=Post.find(@post.id).comments %>
+            <% @comments.each do |comment| %>
+                <p>
+                    <%= comment.author.name %> : <%= comment.text %>
+                </p>
+            <% end %>
+    </div>
+</main>

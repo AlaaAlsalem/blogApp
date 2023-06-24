@@ -1,31 +1,31 @@
-<h1>Here is details of Users</h1>
-<section>
-  <div class="d-flex justify-content-between">
-    <div>
-      <img src="<%= @user.photo %>" alt='User Avatar' style="width:20%" />
+<main>
+    <div class="user-container">
+        <section class="user">
+            <img src=<%= @user.photo %> alt="User Photo" class="user-photo">
+            <div class="user-details">
+                <h2 class="user-name"><%= @user.name%></h2>
+                <h5 class="user-post-count">Number of posts: <%= @user.posts_counter %> </h5>
+            </div>
+        </section>
+        <section class="user-bio">
+            <h3>Bio</h3>
+            <p><%= @user.bio %></p>
+        </section>
+        <section class="user-posts">
+            <h3>Recent Posts</h3>
+            <% @user.three_latest_posts.each do |post| %>
+            <a href="<%=@user.id%>/posts/<%=post.id%>" class="user-post-link">
+                <div class="post">
+                    <h4><%= post.title %></h4>
+                    <p><%= truncate(post.text, length: 180) %></p>
+                    <p class="comment-like-count">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></p>
+                </div>
+            </a>
+            <% end %>
+            <button class="button">
+                <a href="<%=@user.id%>/posts/" class="user-post-link">See all posts</a>
+            </button>
+        </section>
     </div>
-    <div class='flex-grow-1 d-flex justify-content-between align-items-center'>
-      <a href="/users/<%= @user.id %>/posts">
-        <h1><%= @user.name %></h1>
-      </a>
-      <p>Number of posts: <%= @user.posts_counter || 0 %></p>
-    </div>
-  </div>
-  <div class='border border-dark p-4'>
-    <h3>Bio</h3>
-    <%= @user.bio %>
-  </div>
-  <div class='posts mt-5'>
-    <% @user.three_latest_posts.each_with_index do |post,index| %>
-      <div class="border border-dark p-2 mb-2">
-        <h3>post #<%= index+1 %></h3>
-        <p><%= post.text%></p>
-        <div class="d-flex justify-content-end">
-          <span class="">Comments: <%= post.comments_counter || 0 %> </span>
-          <span class="float-right">, Likes: <%= post.likes_counter || 0 %></span>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <a href="<%= @user.id%>/posts" class="d-flex justify-content-center"> See all posts</a>
-</section>
+
+</main>
