@@ -16,7 +16,7 @@
     <%= @user.bio %>
   </div>
   <div class='posts mt-5'>
-    <% @user.recent_posts.each_with_index do |post,index| %>
+    <% @user.three_latest_posts.each_with_index do |post,index| %>
       <div class="border border-dark p-2 mb-2">
         <h3>post #<%= index+1 %></h3>
         <p><%= post.text%></p>
