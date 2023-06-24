@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Post, type: :request do
   let(:user) { User.create!(name: 'Aladdin', posts_counter: 0) }
   let(:post) do
-    Post.create!(title: 'Rails', text: 'Rails magic', author: user,
+    Post.create!(title: 'Rails', text: 'Rails is magic', author: user,
                  comments_counter: 0, likes_counter: 0)
   end
 
@@ -20,7 +20,7 @@ describe Post, type: :request do
     it 'response body displays correct placeholder text' do
       get user_posts_url(user.id)
 
-      expect(response.body).to include('Listing User Posts')
+      expect(response.body).to include('users posts')
     end
   end
 
@@ -37,7 +37,7 @@ describe Post, type: :request do
     it 'response body displays correct placeholder text' do
       get user_post_url(user_id: user.id, id: post.id)
 
-      expect(response.body).to include('Showing User specific post')
+      expect(response.body).to include('details of posts')
     end
   end
 end
